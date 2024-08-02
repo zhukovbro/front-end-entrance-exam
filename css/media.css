@@ -1,0 +1,32 @@
+@media (max-width: 675px) {
+  .container {
+    width: 308px;
+  }
+
+  /*.row-one {
+    flex-direction: column;
+  }*/
+
+  .row-one__left {
+    margin-right: 0; 
+    margin-bottom: 20px; 
+  }
+
+  .row-one__left__avatar{
+    margin-right: 10px;
+  }
+
+  .row-one__left__info{
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  body{
+    margin: 0;
+  }
+
+  #app {
+    padding-top: 0;
+  }
+}
