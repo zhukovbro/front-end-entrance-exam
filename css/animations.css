@@ -1,0 +1,90 @@
+.ripple {
+  background: #B039FA;
+  width: 20px; /* Увеличенный начальный размер */
+  height: 20px; /* Увеличенный начальный размер */
+  border-radius: 50%;
+  opacity: 0.4;
+  position: absolute;
+  transform: scale(0); /* Начальное состояние */
+  transition: transform 1s ease-out, opacity 1s ease-out; /* Плавная анимация */
+  pointer-events: none;
+}
+
+.ripple.run {
+  opacity: 0;
+  transform: scale(10); /* Увеличение риппла */
+}
+
+.ripple-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+[contenteditable="true"] {
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+  position: relative;
+  border-radius: 8px;
+}
+
+[contenteditable="true"]:focus {
+  outline: none;
+  border-radius: 6px;
+}
+
+[contenteditable="true"]:focus::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  bottom: -4px;
+  left: -4px;
+  border: 2px solid #9370DB;
+  border-radius: 6px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Анимация для редактирования */
+@keyframes edited-animation {
+  0% {
+    transform: scale(1);
+    filter: brightness(100%) blur(0px);
+  }
+  50% {
+    transform: scale(1.05); /* Пульсирующий эффект */
+    filter: brightness(120%) blur(0px); /* Увеличение яркости */
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(100%) blur(0px);
+  }
+}
+
+.edited {
+  animation: edited-animation 0.15s ease-in-out;
+  position: relative;
+  z-index: 1;
+}
+
+.edited-container {
+  overflow: visible;
+}
+
+@keyframes overlay-edited-animation {
+  0% {
+    transform: translateX(-50%) scale(1);
+    filter: brightness(100%);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.1);
+    filter: brightness(120%);
+  }
+  100% {
+    transform: translateX(-50%) scale(1);
+    filter: brightness(100%);
+  }
+}
+
+.row-two__right__block__overlay.edited {
+  animation: overlay-edited-animation 0.3s ease-in-out;
+}

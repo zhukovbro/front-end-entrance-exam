@@ -1,173 +1,107 @@
-import '../css/style.css'
-import '../css/media.css'
-import avatar from '/avatar.svg'
+/* jshint esversion: 8 */
+/* globals html2pdf */
+import "../css/style.css";
+import "../css/media.css";
+import "../css/animations.css";
 
+document.addEventListener("DOMContentLoaded", () => {
+  initializeRippleEffect();
+  initializeContentEditable();
+  initializeDownloadPDFButton();
+});
 
-document.querySelector('#app').innerHTML = `
-  <div class="container">
-    <div class="row-one">
-      <div class="row-one__left">
-        <img src="${avatar}" class="row-one__left__avatar" alt="">
-        <div class="row-one__left__info block-grey-radius">
-          <div class="row-one__left__info__line-top">
-            Hello 👋🏻 I’m
-          </div>
-          <div class="row-one__left__info__line-bottom">
-            <div class="row-one__left__info__line-bottom__name">
-              Karthik SR
-            </div>
-            <div class="row-one__left__info__line-bottom__job">
-              UX/UI Designer
-            </div>
-          </div>
-        </div>
-      </div> 
-      <div class="row-one__right block-grey-radius">
-        <div class="row-one__right__top">
-          Languages
-        </div>
-        <div class="row-one__right__bottom">
-          <div class="row-one__right__bottom__text">
-            <div class="row-one__right__bottom__text__row">
-              English
-            </div>
-            <div class="row-one__right__bottom__text__row">
-              Malayalam
-            </div>
-            <div class="row-one__right__bottom__text__row">
-              Hindi
-            </div>
-          </div>
-          <div class="row-one__right__bottom__lines">
-            <div class="row-one__right__bottom__lines__item"></div>
-            <div class="row-one__right__bottom__lines__item"></div>
-            <div class="row-one__right__bottom__lines__item"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row-two">
-      <div class="row-two__left block-grey-radius">
-        <div class="row-two__left__title">
-          Experience
-        </div>
-        <div class="row-two__left__experience">
-          <div class="row-two__left__experience__item">
-            <div class="row-one__right__bottom__lines__item__top">
-              <div class="row-two__left__experience__item__top">
-                Jun. 2023 - Present
-              </div>
-              <div class="row-two__left__experience__item__top__tag">
-                
-              </div>
-            </div>
-            <div class="row-two__left__experience__item__bottom">
-              <div class="row-two__left__experience__item__bottom__job">
-                <div class="row-two__left__experience__item__bottom__job__title">
-                  Marketing Manager
-                </div>
-                <div class="row-two__left__experience__item__bottom__job__sub-title">
-                  <div class="row-two__left__experience__item__bottom__job__sub-title__item">
-                    Pankayam
-                  </div>
-                  <div class="row-two__left__experience__item__bottom__job__sub-title__item">
-                    Full-time
-                  </div>
-                </div>
-              </div>
-              <div class="row-two__left__experience__item__bottom__description">
-                <ul>
-                  <li>Development of internal projects from scratch, product design of brands </li>
-                  <li>Landing page, webapps and hybrid apps</li>
-                  <li>Coordinating with outside agencies, art services, web designer, marketing, printers, and colleagues as necessary.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="row-two__left__experience__item">
-            <div class="row-two__left__experience__item__top">
-              2017 - Present
-            </div>
-            <div class="row-two__left__experience__item__bottom">
-              <div class="row-two__left__experience__item__bottom__job">
-                <div class="row-two__left__experience__item__bottom__job__title">
-                  Graphic / Web designer
-                </div>
-                <div class="row-two__left__experience__item__bottom__job__sub-title">
-                  <div class="row-two__left__experience__item__bottom__job__sub-title__item">
-                    Freelance
-                  </div>
-                </div>
-              </div>
-              <div class="row-two__left__experience__item__bottom__description">
-                <ul>
-                  <li>Development of internal projects from scratch, product design of brands </li>
-                  <li>Landing page, webapps and hybrid apps</li>
-                  <li>Coordinating with outside agencies, art services, web designer, marketing, printers, and colleagues as necessary.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="row-two__left__experience__item">
-            <div class="row-two__left__experience__item__top">
-              Sep. 2021 - Jun. 2023
-            </div>
-            <div class="row-two__left__experience__item__bottom">
-              <div class="row-two__left__experience__item__bottom__job">
-                <div class="row-two__left__experience__item__bottom__job__title">
-                  Legal Assistant
-                </div>
-                <div class="row-two__left__experience__item__bottom__job__sub-title">
-                  <div class="row-two__left__experience__item__bottom__job__sub-title__item">
-                    Law Firm
-                  </div>
-                  <div class="row-two__left__experience__item__bottom__job__sub-title__item">
-                    Intern
-                  </div>
-                </div>
-              </div>
-              <div class="row-two__left__experience__item__bottom__description">
-                <ul>
-                  <li>Provide administrative support to lawyer and enhance office effectiveness</li>
-                  <li>Handle communication with clients, witnesses etc.</li>
-                  <li>repare case briefs and summarize depositions, interrogatories and testimony</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row-two__right block-grey-radius">
-        <div class="row-two__right__title">
-          Tools
-        </div>
-        <div class="row-two__right__inner">
-          
-        </div>
-      </div>
-    </div>
-    <div class="row-three">
-      <div class="row-three__left block-grey-radius">
-        asdf
-      </div>
-      <div class="row-three__right">
-        <div class="row-three__right__top block-grey-radius">
-          asdf
-        </div>
-        <div class="row-three__right_bottom">
-          asdf
-        </div>
-      </div>
-    </div>
-    
-  </div>
-`
+function initializeRippleEffect() {
+  document.addEventListener("pointerdown", handlePointerDown);
+}
 
+function handlePointerDown(mouseEvent) {
+  const elementWithRipple = mouseEvent.target.closest(".ripple-effect");
+  if (elementWithRipple) {
+    createRipple(elementWithRipple, mouseEvent);
+  }
+}
 
+function createRipple(elementWithRipple, mouseEvent) {
+  const rippleEl = document.createElement("div");
+  rippleEl.classList.add("ripple");
 
+  const { left, top } = elementWithRipple.getBoundingClientRect();
+  const x = mouseEvent.clientX - left - 10;
+  const y = mouseEvent.clientY - top - 10;
 
+  setPosition(rippleEl, x, y);
+  appendRipple(elementWithRipple, rippleEl);
+}
 
+function setPosition(rippleEl, x, y) {
+  rippleEl.style.left = `${x}px`;
+  rippleEl.style.top = `${y}px`;
+}
 
+function appendRipple(elementWithRipple, rippleEl) {
+  elementWithRipple.appendChild(rippleEl);
+  requestAnimationFrame(() => {
+    rippleEl.classList.add("run");
+  });
+  rippleEl.addEventListener("transitionend", () => {
+    rippleEl.remove();
+  });
+}
 
+function initializeContentEditable() {
+  document
+    .querySelectorAll('[contenteditable="true"]')
+    .forEach(setupContentEditable);
+}
 
+function setupContentEditable(element) {
+  const key = element.getAttribute("data-key");
+  if (!key) {
+    console.error("Element does not have a data-key:", element);
+    return;
+  }
 
+  const savedData = localStorage.getItem(key);
+  if (savedData) {
+    element.innerText = savedData;
+  }
+
+  element.addEventListener("input", () =>
+    handleContentEditableInput(element, key),
+  );
+}
+
+function handleContentEditableInput(element, key) {
+  localStorage.setItem(key, element.innerText);
+  markAsEdited(element);
+}
+
+function markAsEdited(element) {
+  element.classList.add("edited");
+  setTimeout(() => {
+    element.classList.remove("edited");
+  }, 150);
+}
+
+function initializeDownloadPDFButton() {
+  const downloadBtn = document.getElementById("download-pdf");
+  if (downloadBtn) {
+    downloadBtn.addEventListener("click", downloadPDF);
+  }
+}
+
+function downloadPDF() {
+  const element = document.getElementById("app");
+  const opt = getPDFOptions();
+  html2pdf().from(element).set(opt).save();
+}
+
+function getPDFOptions() {
+  return {
+    margin: 1,
+    filename: "resume.pdf",
+    image: { type: "jpeg", quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF: { unit: "pt", format: "a4", orientation: "portrait" },
+  };
+}
